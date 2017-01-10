@@ -1016,6 +1016,10 @@ class Model(with_metaclass(MetaModel)):
                 else:
                     operator = pythonic(NOT_NULL)
                 condition = {}
+            elif operator in ["contains", "not_contains"]:
+                value = [
+                    {ATTR_TYPE_MAP["String"]: unicode(value)}]
+                condition = {ATTR_VALUE_LIST: value}
             else:
                 if not isinstance(value, list):
                     value = [value]
